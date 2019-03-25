@@ -1,0 +1,23 @@
+#container {
+    border: solid red 1px;
+    height: 90vh;
+    margin-top: 5rem;
+    text-align: center;
+ 
+}
+
+#question {
+    border: solid red 1px;
+    height: 20%;
+
+}
+.answer-choice {
+    border: solid red 1px;
+    height: 15%;
+
+}
+
+#time-remaining {
+    height: 10%;
+}
+
