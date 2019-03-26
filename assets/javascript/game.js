@@ -36,7 +36,7 @@ class Questions {
         return this._answeredCorrectly;
     }
 
-    answeredIncorrectly() {
+    get answeredIncorrectly() {
         return this._answeredIncorrectly;
     }
 
@@ -118,6 +118,7 @@ console.log(currentQuestion.wasAnsweredCorrectly)
 // Load question
 //setTimeout
 function loadQuestion() {
+    currentQuestion = questionArray[answeredCounter];
     $('#question').text(currentQuestion.question);
     $('#choice1').text(currentQuestion.answerChoices[0]);
     $('#choice2').text(currentQuestion.answerChoices[1]);
@@ -130,13 +131,17 @@ function loadQuestion() {
 
 $('.answer-choice').click(function() {
     stopTimer();
-    if ($(this).val() === currentQuestion.correctAnswer)
-      currentQuestion.wasAnsweredCorrectly;
-    //   $(this).css('$(this)' + '-border', 'green');
-      else if ($('this') !== currentQuestion.correctAnswer)
-      currentQuestion.wasAnsweredIncorrectly;
-        // $(this).css('$(this)' + '-border', 'red');
-    setTimeout(loadQuestion(), 3000);
+    let selection = $(this).clone().children().remove().end().text();
+    if (selection === currentQuestion.correctAnswer)
+      currentQuestion.wasAnsweredCorrectly();
+
+      else if (selection !== currentQuestion.correctAnswer)
+      currentQuestion.wasAnsweredIncorrectly();
+ 
+    setTimeout(loadQuestion(), 1000);
+    console.log(answeredCounter)
+    console.log(correctCounter)
+    console.log(incorrectCounter)
 });
 
 
