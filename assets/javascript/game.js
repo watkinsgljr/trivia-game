@@ -3,57 +3,59 @@
 
 class Questions {
     constructor(questionId, question, answerChoices, correctAnswer) {
-        this.questionId = questionId;
-        this.question = question;
-        this.answerChoices = answerChoices;
-        this.correctAnswer = correctAnswer;
-        this.answered = false;
-        this.answeredCorrectly = false;
-        this.answeredIncorrectly = false;
+        this._questionId = questionId;
+        this._question = question;
+        this._answerChoices = answerChoices;
+        this._correctAnswer = correctAnswer;
+        this._answered = false;
+        this._answeredCorrectly = false;
+        this._answeredIncorrectly = false;
     }
 
     get QuestionId() {
-        return this.questionId;
+        return this._questionId;
     }
 
     get question() {
-        return this.question;
+        return this._question;
     }
 
     get answerChoices() {
-        return this.answerChoices;
+        return this._answerChoices;
     }
 
     get correctAnswer() {
-        return this.correctAnswer;
+        return this._correctAnswer;
     }
 
     get answered() {
-        return this.answered;
+        return this._answered;
     }
 
     get answeredCorrectly() {
-        return this.answeredCorrectly;
-    }
-
-    get answeredIncorrectly() {
-        return this.answeredIncorrectly;
-    }
-
-    answeredCorrectly() {
-        this.answeredCorrectly = true;
-        this.answered = true;
-        answerCounter += 1;
-        correctCounter += 1;
+        return this._answeredCorrectly;
     }
 
     answeredIncorrectly() {
-        this.answeredIncorrectly = true;
-        this.answered = true;
-        answerCounter += 1;
-        incorrectCounter += 1;
+        return this._answeredIncorrectly;
+    }
+
+    wasAnsweredCorrectly() {
+        this._answeredCorrectly = true;
+        this._answered = true;
+        answeredCounter++;
+        correctCounter++;
+    }
+
+    wasAnsweredIncorrectly() {
+        this._answeredIncorrectly = true;
+        this._answered = true;
+        answeredCounter++;
+        incorrectCounter++;
+        // $(this).css('$(this)' + '-border', 'red');
     }
 }
+
 
 const question1 = new Questions(
     'one',
@@ -92,8 +94,6 @@ const question5 = new Questions(
 );
 
 
-console.log(question1)
-console.log(question1.question)
 
 let trivaGame
 let questionArray = [question1, question2, question3, question4, question5];
@@ -102,14 +102,15 @@ let randomizedQuestionsBank = [];
 let answeredCounter = 0;
 let correctCounter = 0;
 let incorrectCounter = 0;
-let currentQuestion;
-
+// let currentQuestion;
+let currentQuestion = questionArray[answeredCounter];
+console.log(currentQuestion)
+console.log(currentQuestion.wasAnsweredCorrectly)
 
 //----------------------------------------------------FUNCTIONS------------------------------------------------------------
 
 // Assign Current Question
-
-
+//Moved assignment code to first line of loadQuestion function
 
 
 
@@ -117,40 +118,59 @@ let currentQuestion;
 // Load question
 //setTimeout
 function loadQuestion() {
-    currentQuestion = questionArray[answeredCounter];
     $('#question').text(currentQuestion.question);
     $('#choice1').text(currentQuestion.answerChoices[0]);
     $('#choice2').text(currentQuestion.answerChoices[1]);
     $('#choice3').text(currentQuestion.answerChoices[2]);
     $('#choice4').text(currentQuestion.answerChoices[3]);
+    runTimer();
 }
 
 // Answer choices click event
 
 $('.answer-choice').click(function() {
+    stopTimer();
     if ($(this).val() === currentQuestion.correctAnswer)
-      answeredCorrectly();
+      currentQuestion.wasAnsweredCorrectly;
+    //   $(this).css('$(this)' + '-border', 'green');
       else if ($('this') !== currentQuestion.correctAnswer)
-        answeredIncorrectly();
+      currentQuestion.wasAnsweredIncorrectly;
+        // $(this).css('$(this)' + '-border', 'red');
     setTimeout(loadQuestion(), 3000);
 });
 
 
+//----------------------------Fade incorrrect answers function------------------------
 
+//----------------------------------------TIMER----------------------------------------------------
 
+//-----------------------------------Timer variables-----------------------------------------------------------
+var number = 10;
+var intervalId;
 
+//-----------------------------------The run timer function------------------------------------------------------------------
+function runTimer() {
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);
+  }
 
+  //---------------------------------The decrement function-------------------------------------------------------
+  function decrement() {
+    number--;
+    $("#timer").html("<h2>" + number + "</h2>");
+    if (number === 0) {
+      stopTimer();
+      alert("Time Up!");
+      loadQuestion();
+    }
+  }
 
+  //---------------------------------The stop timer function-------------------------------------------------------
+  function stopTimer() {
+    clearInterval(intervalId);
+  }
 
-
-
-
-
-
-
-
-
-
+  runTimer();
 
 
 
@@ -168,3 +188,7 @@ $('.answer-choice').click(function() {
 
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
 //https://www.codecademy.com/courses/introduction-to-javascript/lessons/classes/exercises/introduction?action=resume_content_item
+
+//---------------------------------------TIMER--------------------------------------------------------------
+
+// Timers classwork interval-solved
