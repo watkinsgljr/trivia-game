@@ -73,9 +73,9 @@ const question2 = new Questions(
 
 const question3 = new Questions(
     'three',
-    'What color is the sky?',
-    ['blue', 'red', 'brown', 'yellow'],
-    'blue'
+    'What year was Kobe born?',
+    ['1999', '1978', '1963', '1982'],
+    '1978'
 );
 
 const question4 = new Questions(
@@ -94,8 +94,8 @@ const question5 = new Questions(
 );
 
 
-
-let trivaGame
+// function gameOver()
+let trivaGame;
 let questionArray = [question1, question2, question3, question4, question5];
 let answeredQuestionsBank = [];
 let randomizedQuestionsBank = [];
@@ -118,6 +118,7 @@ console.log(currentQuestion.wasAnsweredCorrectly)
 // Load question
 //setTimeout
 function loadQuestion() {
+    if (answeredCounter < questionArray.length) {
     currentQuestion = questionArray[answeredCounter];
     $('#question').text(currentQuestion.question);
     $('#choice1').text(currentQuestion.answerChoices[0]);
@@ -125,6 +126,7 @@ function loadQuestion() {
     $('#choice3').text(currentQuestion.answerChoices[2]);
     $('#choice4').text(currentQuestion.answerChoices[3]);
     runTimer();
+    } else gameOver();
 }
 
 // Answer choices click event
@@ -176,6 +178,9 @@ function runTimer() {
   }
 
   runTimer();
+
+  //--------------------------------END GAME----------------------------------------------------------------------------
+
 
 
 

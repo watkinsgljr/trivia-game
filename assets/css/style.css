@@ -13,8 +13,26 @@
 }
 .answer-choice {
     border: solid red 1px;
-    height: 15%;
+    background: navy;
+    height: 85%;
+    margin-top: 1rem auto;
+    /* height: 15%; */
+}
 
+.answer-choice:hover {
+    /* border: solid red 10px; */
+}
+
+.answer-choice-border {
+    position: relative;
+    height: 15%;
+    margin: 1.5rem auto;
+    border: solid red 1px;
+    padding-top: 1.5rem;
+}
+
+.answer-choice-border:hover {
+    background: linear-gradient(to right, white, blue);
 }
 
 #time-remaining {
