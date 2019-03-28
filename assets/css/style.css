@@ -1,22 +1,59 @@
+
+
+body {
+    font-family: 'Arapey', serif;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 3rem;
+}
+
+body {
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+}
+
+
 #container {
-    border: solid red 1px;
-    height: 90vh;
+    /* border: solid red 1px; */
+    height: 35rem;
+    width: 60%;
     margin-top: 5rem;
     text-align: center;
+    display: none;
+    margin: auto;
+    color: white;
+    font-size: 1.5rem;
+    background-color: white;
+    margin-bottom: 3rem;
+    border: solid 7px navy;
+    display: flex;
+    display: none;
+    
  
 }
 
 #question {
-    border: solid red 1px;
-    height: 20%;
+    /* border: solid red 1px; */
+    height: 5rem;
+    width: 45rem;
+    color: blue;
+    font-weight:bold; 
+    font-size: 2rem;
+    padding-top: 1rem;
+    margin: auto;
 
 }
 .answer-choice {
-    border: solid red 1px;
+    /* border: solid red 1px; */
     background: navy;
-    height: 85%;
-    margin-top: 1rem auto;
-    /* height: 15%; */
+    height: 4rem;
+    width: 98%;
+    border: 3px solid gray;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .answer-choice:hover {
@@ -25,17 +62,123 @@
 
 .answer-choice-border {
     position: relative;
-    height: 15%;
-    margin: 1.5rem auto;
-    border: solid red 1px;
-    padding-top: 1.5rem;
+    height: 5rem;
+    /* border: solid red 1px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+#question-container-border {
+    
 }
 
 .answer-choice-border:hover {
-    background: linear-gradient(to right, white, blue);
+    /* background: linear-gradient(to right, white, blue); */
+    /* background-color: #2a2a72;
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%); */
+    /* height: 5.5rem; */
+    border: 5px solid blue;
+
 }
 
 #time-remaining {
-    height: 10%;
+    height: 2.5rem;
+    color: black;
+    /* border: solid red 1px; */
+    font-size: 1rem;
+    margin-bottom: 3rem;
 }
+
+#timer {
+    font-size: 1rem;
+    color: black;
+    margin: auto;
+}
+
+/* START DIV ------------------------------------------*/
+
+#start-container {
+    display: flex;
+    height: 90%;
+    width: 70%;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+}
+
+#start-button {
+    height: 4rem;
+    width: 10rem;
+    color: white;
+    background-color: navy;
+    /* margin: auto; */
+}
+
+#start-button:hover {
+    border: 3px solid silver;
+}
+
+#button-holder {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* GAME SUMMARY DIV ------------------------------------------*/
+
+#start-over-button-holder {
+    display: flex;
+    justify-content: center;
+    display: none;
+}
+
+#start-over-button {
+    height: 4rem;
+    width: 10rem;
+    color: white;
+    background-color: navy;
+    /* margin: auto; */
+}
+
+#feedback-container {
+    height: 20rem;
+    width: 40%;
+    margin-top: 5rem;
+    text-align: center;
+    margin: auto;
+    color: white;
+    font-size: 1.5rem;
+    background-color: white;
+    margin-bottom: 3rem;
+    border: solid 7px navy;
+    display: none;
+    /* display: none; */
+}
+
+#feedback-tag {
+    color:navy;
+    font-size: 2rem;
+    margin-top: 3rem;
+}
+
+#feedback-summary {
+    color: navy;
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+#game-over-button-holder {
+    color: black;
+    margin-top: 1rem;
+}
+
+
+
+
+
+
 

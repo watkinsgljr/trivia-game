@@ -59,38 +59,38 @@ class Questions {
 
 const question1 = new Questions(
     'one',
-    'What color is my pants?',
-    ['blue', 'red', 'brown', 'yellow'],
-    'brown'
+    'It does not matter how slowly you go as long as...?',
+    ['you do not stop.', 'you are talented.', 'you are doing better than your circle.', 'you have help.'],
+    'you do not stop.'
 );
 
 const question2 = new Questions(
     'two',
-    'What color is the sky?',
-    ['blue', 'red', 'brown', 'yellow'],
-    'blue'
+    'The best time to plant a tree was 20 years ago.  The second best time...?',
+    ['is tomorrow morning.', 'is never because you missed your chance.', 'was yesterday.', 'is right now.'],
+    'is right now.'
 );
 
 const question3 = new Questions(
     'three',
-    'What year was Kobe born?',
-    ['1999', '1978', '1963', '1982'],
-    '1978'
+    'Big jobs usually go to the man/woman who prove..?',
+    ['has the best network.', 'they are smart and talented.', 'their ability to outgrow small ones.', 'the hardest worker.'],
+    'their ability to outgrow small ones.'
 );
 
 const question4 = new Questions(
     'four',
-    'What color is the sky?',
-    ['blue', 'red', 'brown', 'yellow'],
-    'blue'
+    'Life is _ what happend to you ans _ how you react to it?',
+    ['10% ; 90%', '50% ; 50%', '30% ; 70%', '90% ; 10%'],
+    '10% ; 90%'
 
 );
 
 const question5 = new Questions(
     'five',
-    'What color is the sky?',
-    ['blue', 'red', 'brown', 'yellow'],
-    'red'
+    'Opportunity is missed by most people because...?',
+    ['only the top percenters get access to opportunity.', 'it is dressed in overalls and looks like work.', 'life should be fun.', 'you must be trained to see the opportunity in situations.'],
+    'it is dressed in overalls and looks like work.'
 );
 
 
@@ -112,7 +112,14 @@ console.log(currentQuestion.wasAnsweredCorrectly)
 // Assign Current Question
 //Moved assignment code to first line of loadQuestion function
 
+//---------------START BUTTON--------------------------
 
+$('#start-button').click( function() {
+    $('#start-container').hide();
+    $('#feedback-container').hide();
+    $('#container').show();
+    loadQuestion();
+});
 
 
 // Load question
@@ -126,21 +133,26 @@ function loadQuestion() {
     $('#choice3').text(currentQuestion.answerChoices[2]);
     $('#choice4').text(currentQuestion.answerChoices[3]);
     runTimer();
-    } else gameOver();
+    } else {
+        gameOver();
+    }
 }
 
 // Answer choices click event
 
-$('.answer-choice').click(function() {
+$('.answer-choice').click(function () {
     stopTimer();
-    let selection = $(this).clone().children().remove().end().text();
-    if (selection === currentQuestion.correctAnswer)
-      currentQuestion.wasAnsweredCorrectly();
+    let selection = $(this).text();
+    if (selection === currentQuestion.correctAnswer) {
+        // $(this).parent().css('background', 'linear-gradient(to right, green, green)');
+        currentQuestion.wasAnsweredCorrectly();
 
-      else if (selection !== currentQuestion.correctAnswer)
-      currentQuestion.wasAnsweredIncorrectly();
- 
-    setTimeout(loadQuestion(), 1000);
+    } else if (selection !== currentQuestion.correctAnswer) {
+        // $(this).parent().css('background', 'linear-gradient(to right, maroon, red)');
+        currentQuestion.wasAnsweredIncorrectly();
+    }
+
+    setTimeout(loadQuestion(), 10000);
     console.log(answeredCounter)
     console.log(correctCounter)
     console.log(incorrectCounter)
@@ -164,10 +176,10 @@ function runTimer() {
   //---------------------------------The decrement function-------------------------------------------------------
   function decrement() {
     number--;
-    $("#timer").html("<h2>" + number + "</h2>");
+    $("#timer").html("<h2>Time Remaining: " + number + "</h2>");
     if (number === 0) {
       stopTimer();
-      alert("Time Up!");
+      currentQuestion.wasAnsweredIncorrectly();
       loadQuestion();
     }
   }
@@ -177,10 +189,48 @@ function runTimer() {
     clearInterval(intervalId);
   }
 
-  runTimer();
+  
 
   //--------------------------------END GAME----------------------------------------------------------------------------
 
+  function gameOver() {
+    showFeedbackContainer();
+    if (correctCounter >= 4) {
+        $('#feedback-tag').text('Great Job!');
+    } else {
+        $('#feedback-tag').text('Not very good!'); 
+    }
+    $('#feedback-summary').text('You scored ' + correctCounter + ' out of ' + answeredCounter + '.');
+  }
+
+  //---------------------PAGE TRANSITIONS-------------------
+
+  function showStartContainer() {
+    $('#start-container').show();
+    $('#feedback-container').hide();
+    $('#container').hide();
+  }
+
+
+  function showMainContainer() {
+    $('#start-container').hide();
+    $('#feedback-container').hide();
+    $('#container').show();
+  }
+
+
+  function showAnswerCotainer() {
+    $('#start-container').hide();
+    $('#feedback-container').hide();
+    $('#container').hide();
+  }
+
+
+  function showFeedbackContainer() {
+    $('#start-container').hide();
+    $('#feedback-container').show();
+    $('#container').hide();
+  }
 
 
 

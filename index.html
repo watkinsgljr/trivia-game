@@ -7,36 +7,76 @@
     <!-- <link href="./assets/css/reset.css" rel="stylesheet" type="text/css"> -->
     <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Arapey" rel="stylesheet">
     <title>Brain Fart</title>
 </head>
 <body>
 
     <h1>Brain Fart Trivia</h1>
-    <div id="timer"></div>
+    <!-- <div id="timer"></div> -->
 
-
-    <div id="container">
-        <div id="question">Insert Question Here</div>
-        <div id="time-remaining">Time Remaining: 30 seconds</div>
-
-        <div class="answer-choice-border" id="choice-border1">
-        <div class="answer-choice" id="choice1">Choice 1</div>
+    <div id="start-container">
+        <div id="directions-div">
+          <p>
+              Welcome to Brain Fart.  Here you will hav a chance to put your knowledge to the test and see if you have what it takes to be a real estate investor!
+              If you don't do well on the frst try, don't worry.  Try it as many times as youlike until you have a firm grasp of the material.
+              <br>
+              <br>
+              Choose the answer that best answers the question.  If more that one answer seems correct, choose the BEST answer by clicking on the box that contains your answer.
+              You will be given 10 seconds to answer each question.  If you aren't able to answer in the alloted amount of time, the answer will be counted wrong.
+              <br>
+              <br>
+              GOOD LUCK!!
+          </p>
         </div>
-
-        <div class="answer-choice-border" id="choice-border2">
-        <div class="answer-choice" id="choice2">Choice 2</div>
+        <div id="button-holder">
+            <button id="start-button" type="button">Start Now!</button>
         </div>
-
-        <div class="answer-choice-border" id="choice-border3">
-        <div class="answer-choice" id="choice3">Choice 3</div>
-        </div>
-
-        <div class="answer-choice-border" id="choice-border4">
-        <div class="answer-choice" id="choice4">Choice 4</div>
-        </div>
-
     </div>
 
+    <!-- <div id="question-container-border"> -->
+    <div id="container">
+    
+            <div id="question">Insert Question Here</div>
+
+            <div id="timer"></div>
+    
+            <div class="answer-choice-border" id="choice-border1">
+                <div class="answer-choice" id="choice1"></div>
+            </div>
+    
+            <div class="answer-choice-border" id="choice-border2">
+                <div class="answer-choice" id="choice2"></div>
+            </div>
+    
+            <div class="answer-choice-border" id="choice-border3">
+                <div class="answer-choice" id="choice3"></div>
+            </div>
+    
+            <div class="answer-choice-border" id="choice-border4">
+                <div class="answer-choice" id="choice4"></div>
+            </div>
+    
+    
+    </div>
+
+
+    <div id="feedback-container">
+        <div id="feedback-tag"></div>
+        <div id="feedback-summary"></div>
+        <div id="game-over-button-holder">
+            <button id="start-over-button" type="button">Start Over?</button>
+        </div>
+    </div>
+
+
+    <div id="correct-answer-container">
+
+        
+    </div>
+
+    
+    <!-- </div> -->
 
 
 
