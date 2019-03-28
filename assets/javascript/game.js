@@ -41,39 +41,39 @@ class Questions {
     }
 
     wasAnsweredCorrectly() {
+        showOutcomeContainer();
+        $('#gif-holder').append();
+        $('#brain-fart-tag').text('Brain Smart!!')
         this._answeredCorrectly = true;
         this._answered = true;
         answeredCounter++;
         correctCounter++;
-        showOutcomeContainer();
-        $('#gif-holder').append();
-        $('#brain-fart-tag').text('Brain Smart!!')
         setTimeout(loadQuestion, 3000);
         
     }
 
     wasAnsweredIncorrectly() {
+        showOutcomeContainer();
+        $('#brain-fart-tag').text('Brain Fart!!')
+        $('#correct-answer-share').text('The correct answer is: ' + "\"" + currentQuestion.correctAnswer + "\"");
         this._answeredIncorrectly = true;
         this._answered = true;
         answeredCounter++;
         incorrectCounter++;
-        showOutcomeContainer();
         // $('#gif-holder').css('background-image', 'url(' + ../images/brain-fart.gif + ')');
-        $('#brain-fart-tag').text('Brain Fart!!')
-        $('#correct-answer-share').text('The correct answer is: ' + "\"" + currentQuestion.correctAnswer + "\"");
         setTimeout(loadQuestion, 3000);
         // $(this).css('$(this)' + '-border', 'red');
     }
 
     TimeExpired() {
+        showOutcomeContainer();
+        $('#brain-fart-tag').text('Brain Fart!!')
+        $('#correct-answer-share').text('The correct answer is: ' + "\"" + currentQuestion.correctAnswer + "\"");
         this._answeredIncorrectly = true;
         this._answered = true;
         answeredCounter++;
         incorrectCounter++;
-        showOutcomeContainer();
         // $('#gif-holder').css('background-image', 'url(' + ../images/brain-fart.gif + ')');
-        $('#brain-fart-tag').text('Brain Fart!!')
-        $('#correct-answer-share').text('The correct answer is: ' + "\"" + currentQuestion.correctAnswer + "\"");
         setTimeout(loadQuestion, 3000);
         // $(this).css('$(this)' + '-border', 'red');
     }
@@ -103,7 +103,7 @@ const question3 = new Questions(
 
 const question4 = new Questions(
     'four',
-    'Life is _ what happend to you ans _ how you react to it?',
+    'Life is _ what happend to you and _ how you react to it?',
     ['10% ; 90%', '50% ; 50%', '30% ; 70%', '90% ; 10%'],
     '10% ; 90%'
 
