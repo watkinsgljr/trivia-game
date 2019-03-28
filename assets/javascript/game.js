@@ -45,6 +45,11 @@ class Questions {
         this._answered = true;
         answeredCounter++;
         correctCounter++;
+        showOutcomeContainer();
+        $('#gif-holder').append();
+        $('#brain-fart-tag').text('Brain Smart!!')
+        setTimeout(loadQuestion, 3000);
+        
     }
 
     wasAnsweredIncorrectly() {
@@ -52,6 +57,24 @@ class Questions {
         this._answered = true;
         answeredCounter++;
         incorrectCounter++;
+        showOutcomeContainer();
+        // $('#gif-holder').css('background-image', 'url(' + ../images/brain-fart.gif + ')');
+        $('#brain-fart-tag').text('Brain Fart!!')
+        $('#correct-answer-share').text('The correct answer is: ' + "\"" + currentQuestion.correctAnswer + "\"");
+        setTimeout(loadQuestion, 3000);
+        // $(this).css('$(this)' + '-border', 'red');
+    }
+
+    TimeExpired() {
+        this._answeredIncorrectly = true;
+        this._answered = true;
+        answeredCounter++;
+        incorrectCounter++;
+        showOutcomeContainer();
+        // $('#gif-holder').css('background-image', 'url(' + ../images/brain-fart.gif + ')');
+        $('#brain-fart-tag').text('Brain Fart!!')
+        $('#correct-answer-share').text('The correct answer is: ' + "\"" + currentQuestion.correctAnswer + "\"");
+        setTimeout(loadQuestion, 3000);
         // $(this).css('$(this)' + '-border', 'red');
     }
 }
@@ -93,8 +116,8 @@ const question5 = new Questions(
     'it is dressed in overalls and looks like work.'
 );
 
+//---------------------GLOBAL VARIABLES--SOME VARIABLES NOT NEEDED NOW BUT WILL BE BENEFICIAL WHEN I RANDOMIZE QUESTIONS ANS ANSWERS------------------------
 
-// function gameOver()
 let trivaGame;
 let questionArray = [question1, question2, question3, question4, question5];
 let answeredQuestionsBank = [];
@@ -102,43 +125,85 @@ let randomizedQuestionsBank = [];
 let answeredCounter = 0;
 let correctCounter = 0;
 let incorrectCounter = 0;
-// let currentQuestion;
 let currentQuestion = questionArray[answeredCounter];
-console.log(currentQuestion)
-console.log(currentQuestion.wasAnsweredCorrectly)
+
+
+  //---------------------PAGE TRANSITIONS------------------------------------------------------------------------
+
+  function showStartContainer() {
+    $('#start-container').show();
+    $('#feedback-container').hide();
+    $('#container').hide();
+    $('#outcome-container').hide();
+  }
+
+
+  function showMainContainer() {
+    $('#start-container').hide();
+    $('#feedback-container').hide();
+    $('#container').show();
+    $('#outcome-container').hide();
+  }
+
+
+  function showAnswerCotainer() {
+    $('#start-container').hide();
+    $('#feedback-container').hide();
+    $('#container').hide();
+    $('#outcome-container').hide();
+  }
+
+
+  function showFeedbackContainer() {
+    $('#start-container').hide();
+    $('#feedback-container').show();
+    $('#container').hide();
+    $('#outcome-container').hide();
+  }
+
+  function showOutcomeContainer() {
+    $('#start-container').hide();
+    $('#feedback-container').hide();
+    $('#container').hide();
+    $('#outcome-container').show();
+  }
+
 
 //----------------------------------------------------FUNCTIONS------------------------------------------------------------
 
-// Assign Current Question
-//Moved assignment code to first line of loadQuestion function
 
 //---------------START BUTTON--------------------------
 
 $('#start-button').click( function() {
-    $('#start-container').hide();
-    $('#feedback-container').hide();
-    $('#container').show();
     loadQuestion();
 });
 
+$('#start-over-button').click( function() {
+    answeredCounter = 0;
+    correctCounter = 0;
+    incorrectCounter = 0;
+    showStartContainer();
+});
 
-// Load question
-//setTimeout
-function loadQuestion() {
+
+//--------------------------------------------------------- Load question------------------------------------------------------------------------------
+
+const loadQuestion = function loadQuestion() {
+    showMainContainer();
     if (answeredCounter < questionArray.length) {
-    currentQuestion = questionArray[answeredCounter];
-    $('#question').text(currentQuestion.question);
-    $('#choice1').text(currentQuestion.answerChoices[0]);
-    $('#choice2').text(currentQuestion.answerChoices[1]);
-    $('#choice3').text(currentQuestion.answerChoices[2]);
-    $('#choice4').text(currentQuestion.answerChoices[3]);
-    runTimer();
+        currentQuestion = questionArray[answeredCounter];
+        $('#question').text(currentQuestion.question);
+        $('#choice1').text(currentQuestion.answerChoices[0]);
+        $('#choice2').text(currentQuestion.answerChoices[1]);
+        $('#choice3').text(currentQuestion.answerChoices[2]);
+        $('#choice4').text(currentQuestion.answerChoices[3]);
+        runTimer();
     } else {
         gameOver();
     }
 }
 
-// Answer choices click event
+// -------------------------------------------------Answer choices click event-------------------------------------------------------------------------
 
 $('.answer-choice').click(function () {
     stopTimer();
@@ -152,23 +217,18 @@ $('.answer-choice').click(function () {
         currentQuestion.wasAnsweredIncorrectly();
     }
 
-    setTimeout(loadQuestion(), 10000);
-    console.log(answeredCounter)
-    console.log(correctCounter)
-    console.log(incorrectCounter)
 });
 
-
-//----------------------------Fade incorrrect answers function------------------------
 
 //----------------------------------------TIMER----------------------------------------------------
 
 //-----------------------------------Timer variables-----------------------------------------------------------
-var number = 10;
+var number = 30;
 var intervalId;
 
 //-----------------------------------The run timer function------------------------------------------------------------------
 function runTimer() {
+    number = 30;
     clearInterval(intervalId);
     intervalId = setInterval(decrement, 1000);
   }
@@ -176,10 +236,10 @@ function runTimer() {
   //---------------------------------The decrement function-------------------------------------------------------
   function decrement() {
     number--;
-    $("#timer").html("<h2>Time Remaining: " + number + "</h2>");
+    $("#timer").html("<h2>" + number + "</h2>");
     if (number === 0) {
       stopTimer();
-      currentQuestion.wasAnsweredIncorrectly();
+      currentQuestion.TimeExpired();
       loadQuestion();
     }
   }
@@ -203,34 +263,6 @@ function runTimer() {
     $('#feedback-summary').text('You scored ' + correctCounter + ' out of ' + answeredCounter + '.');
   }
 
-  //---------------------PAGE TRANSITIONS-------------------
-
-  function showStartContainer() {
-    $('#start-container').show();
-    $('#feedback-container').hide();
-    $('#container').hide();
-  }
-
-
-  function showMainContainer() {
-    $('#start-container').hide();
-    $('#feedback-container').hide();
-    $('#container').show();
-  }
-
-
-  function showAnswerCotainer() {
-    $('#start-container').hide();
-    $('#feedback-container').hide();
-    $('#container').hide();
-  }
-
-
-  function showFeedbackContainer() {
-    $('#start-container').hide();
-    $('#feedback-container').show();
-    $('#container').hide();
-  }
 
 
 
@@ -252,3 +284,6 @@ function runTimer() {
 //---------------------------------------TIMER--------------------------------------------------------------
 
 // Timers classwork interval-solved
+
+//---------------------------------------OTHER-----------------------------------------------------------------------
+// JQuery Documentation

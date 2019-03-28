@@ -37,13 +37,14 @@ body {
 
 #question {
     /* border: solid red 1px; */
-    height: 5rem;
-    width: 45rem;
+    height: 3rem;
+    width: 50rem;
     color: blue;
     font-weight:bold; 
     font-size: 2rem;
     padding-top: 1rem;
-    margin: auto;
+    margin: 0 auto;
+    /* background-image: url(../images/brain-fart.gif) */
 
 }
 .answer-choice {
@@ -94,19 +95,28 @@ body {
 #timer {
     font-size: 1rem;
     color: black;
-    margin: auto;
+    margin: 0 auto;
 }
 
 /* START DIV ------------------------------------------*/
 
 #start-container {
     display: flex;
-    height: 90%;
-    width: 70%;
-    margin: auto;
+    width: 60%;
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    height: 35rem;  
+    margin-top: 5rem;
+    text-align: center;
+    margin: auto;
+    color: navy;
+    font-size: 1.5rem;
+    background-color: white;
+    margin-bottom: 5rem;
+    border: solid 7px navy;
+    padding: 0 2rem;
+    /* display: none; */
 
 }
 
@@ -177,6 +187,32 @@ body {
 }
 
 
+/* OUTCOME DIV ------------------------------------------*/
+
+#outcome-container {
+    height: 30rem;
+    width: 50%;
+    margin-top: 3rem;
+    text-align: center;
+    margin: auto;
+    color: navy;
+    font-size: 3rem;
+    background-color: white;
+    margin-bottom: 3rem;
+    border: solid 7px navy;
+    display: flex;
+    display: none;
+}
+
+#brain-fart-tag {
+    margin-top: 5rem;
+}
+
+#correct-answer-share {
+    margin-top: 1rem;
+}
+
+#gif-holder {}
 
 
 
