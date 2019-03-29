@@ -201,18 +201,38 @@ body {
     margin-bottom: 3rem;
     border: solid 7px navy;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     display: none;
 }
 
 #brain-fart-tag {
-    margin-top: 5rem;
+   
+    width: 100%;
+    height: 4rem;
 }
 
 #correct-answer-share {
-    margin-top: 1rem;
+    
+    width: 100%;
+    height: 8rem;
+    font-size: 2rem;
+    margin-top: 5rem;
 }
 
-#gif-holder {}
+.giphy-embed {
+   
+    width: 100%;
+    height: 8rem;
+}
+
+#gif-holder {
+    
+    width: 100%;
+    height: 8rem;
+    margin-top: 3rem;
+}
 
 
 

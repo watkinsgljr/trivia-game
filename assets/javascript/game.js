@@ -2,11 +2,12 @@
 // Question Class -----------------------------------------------------------
 
 class Questions {
-    constructor(questionId, question, answerChoices, correctAnswer) {
+    constructor(questionId, question, answerChoices, correctAnswer, explanation) {
         this._questionId = questionId;
         this._question = question;
         this._answerChoices = answerChoices;
         this._correctAnswer = correctAnswer;
+        this._explanation = explanation;
         this._answered = false;
         this._answeredCorrectly = false;
         this._answeredIncorrectly = false;
@@ -28,6 +29,10 @@ class Questions {
         return this._correctAnswer;
     }
 
+    get explanation() {
+        return this._explanation;
+    }
+
     get answered() {
         return this._answered;
     }
@@ -42,8 +47,10 @@ class Questions {
 
     wasAnsweredCorrectly() {
         showOutcomeContainer();
-        $('#gif-holder').append();
+        $('#brain-fart').hide();
+        $('#brain-smart').show();
         $('#brain-fart-tag').text('Brain Smart!!')
+        $('#correct-answer-share').text(' ');
         this._answeredCorrectly = true;
         this._answered = true;
         answeredCounter++;
@@ -54,26 +61,29 @@ class Questions {
 
     wasAnsweredIncorrectly() {
         showOutcomeContainer();
+        $('#brain-fart').show();
+        $('#brain-smart').hide();
         $('#brain-fart-tag').text('Brain Fart!!')
-        $('#correct-answer-share').text('The correct answer is: ' + "\"" + currentQuestion.correctAnswer + "\"");
+        $('#correct-answer-share').text('The correct answer is: ' + "\"" + currentQuestion.correctAnswer + "\"" + currentQuestion.explanation);
         this._answeredIncorrectly = true;
         this._answered = true;
         answeredCounter++;
         incorrectCounter++;
-        // $('#gif-holder').css('background-image', 'url(' + ../images/brain-fart.gif + ')');
-        setTimeout(loadQuestion, 3000);
+        // $('#gif-holder').('')
+        setTimeout(loadQuestion, 5000);
         // $(this).css('$(this)' + '-border', 'red');
     }
 
     TimeExpired() {
         showOutcomeContainer();
+        $('#brain-fart').hide();
+        $('#brain-smart').show();
         $('#brain-fart-tag').text('Brain Fart!!')
-        $('#correct-answer-share').text('The correct answer is: ' + "\"" + currentQuestion.correctAnswer + "\"");
+        $('#correct-answer-share').text('The correct answer is: ' + "\"" + currentQuestion.correctAnswer + ".\"" + " " +  currentQuestion.explanation);
         this._answeredIncorrectly = true;
         this._answered = true;
         answeredCounter++;
         incorrectCounter++;
-        // $('#gif-holder').css('background-image', 'url(' + ../images/brain-fart.gif + ')');
         setTimeout(loadQuestion, 3000);
         // $(this).css('$(this)' + '-border', 'red');
     }
@@ -82,30 +92,34 @@ class Questions {
 
 const question1 = new Questions(
     'one',
-    'It does not matter how slowly you go as long as...?',
-    ['you do not stop.', 'you are talented.', 'you are doing better than your circle.', 'you have help.'],
-    'you do not stop.'
+    'Find the hidden color in the sentence: Bob decided to jump in knowing that this is his only choice',
+    ['pink', 'green', 'red', 'brown'],
+    'pink',
+    'Bob decided to jumP IN Knowing..'
 );
 
 const question2 = new Questions(
     'two',
     'The best time to plant a tree was 20 years ago.  The second best time...?',
     ['is tomorrow morning.', 'is never because you missed your chance.', 'was yesterday.', 'is right now.'],
-    'is right now.'
+    'is right now.',
+    " "
 );
 
 const question3 = new Questions(
     'three',
     'Big jobs usually go to the man/woman who prove..?',
     ['has the best network.', 'they are smart and talented.', 'their ability to outgrow small ones.', 'the hardest worker.'],
-    'their ability to outgrow small ones.'
+    'their ability to outgrow small ones.',
+    " "
 );
 
 const question4 = new Questions(
     'four',
     'Life is _ what happend to you and _ how you react to it?',
     ['10% ; 90%', '50% ; 50%', '30% ; 70%', '90% ; 10%'],
-    '10% ; 90%'
+    '10% ; 90%',
+    " "
 
 );
 
@@ -113,7 +127,8 @@ const question5 = new Questions(
     'five',
     'Opportunity is missed by most people because...?',
     ['only the top percenters get access to opportunity.', 'it is dressed in overalls and looks like work.', 'life should be fun.', 'you must be trained to see the opportunity in situations.'],
-    'it is dressed in overalls and looks like work.'
+    'it is dressed in overalls and looks like work.',
+    " "
 );
 
 //---------------------GLOBAL VARIABLES--SOME VARIABLES NOT NEEDED NOW BUT WILL BE BENEFICIAL WHEN I RANDOMIZE QUESTIONS ANS ANSWERS------------------------
@@ -142,14 +157,6 @@ let currentQuestion = questionArray[answeredCounter];
     $('#start-container').hide();
     $('#feedback-container').hide();
     $('#container').show();
-    $('#outcome-container').hide();
-  }
-
-
-  function showAnswerCotainer() {
-    $('#start-container').hide();
-    $('#feedback-container').hide();
-    $('#container').hide();
     $('#outcome-container').hide();
   }
 
