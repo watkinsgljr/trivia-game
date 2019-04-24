@@ -197,6 +197,7 @@ $('#start-over-button').click( function() {
 
 const loadQuestion = function loadQuestion() {
     showMainContainer();
+    runTimer();
     if (answeredCounter < questionArray.length) {
         currentQuestion = questionArray[answeredCounter];
         $('#question').text(currentQuestion.question);
@@ -204,7 +205,6 @@ const loadQuestion = function loadQuestion() {
         $('#choice2').text(currentQuestion.answerChoices[1]);
         $('#choice3').text(currentQuestion.answerChoices[2]);
         $('#choice4').text(currentQuestion.answerChoices[3]);
-        runTimer();
     } else {
         gameOver();
     }
@@ -230,7 +230,7 @@ $('.answer-choice').click(function () {
 //----------------------------------------TIMER----------------------------------------------------
 
 //-----------------------------------Timer variables-----------------------------------------------------------
-var number = 30;
+var number = 31;
 var intervalId;
 
 //-----------------------------------The run timer function------------------------------------------------------------------
