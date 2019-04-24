@@ -70,7 +70,7 @@ class Questions {
         answeredCounter++;
         incorrectCounter++;
         // $('#gif-holder').('')
-        setTimeout(loadQuestion, 5000);
+        setTimeout(loadQuestion, 3000);
         // $(this).css('$(this)' + '-border', 'red');
     }
 
@@ -230,7 +230,7 @@ $('.answer-choice').click(function () {
 //----------------------------------------TIMER----------------------------------------------------
 
 //-----------------------------------Timer variables-----------------------------------------------------------
-var number = 31;
+var number = 32;
 var intervalId;
 
 //-----------------------------------The run timer function------------------------------------------------------------------
