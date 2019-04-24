@@ -236,14 +236,15 @@ var intervalId;
 //-----------------------------------The run timer function------------------------------------------------------------------
 function runTimer() {
     number = 30;
+    $("#timer").html("<h2>" + number + "</h2>");
     clearInterval(intervalId);
     intervalId = setInterval(decrement, 1000);
   }
 
   //---------------------------------The decrement function-------------------------------------------------------
   function decrement() {
-    number--;
     $("#timer").html("<h2>" + number + "</h2>");
+    number--;
     if (number === 0) {
       stopTimer();
       currentQuestion.TimeExpired();
