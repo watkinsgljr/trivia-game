@@ -196,8 +196,8 @@ $('#start-over-button').click( function() {
 //--------------------------------------------------------- Load question------------------------------------------------------------------------------
 
 const loadQuestion = function loadQuestion() {
-    showMainContainer();
     runTimer();
+    showMainContainer();
     if (answeredCounter < questionArray.length) {
         currentQuestion = questionArray[answeredCounter];
         $('#question').text(currentQuestion.question);
